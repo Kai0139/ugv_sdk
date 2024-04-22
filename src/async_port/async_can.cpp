@@ -103,7 +103,7 @@ void AsyncCAN::DefaultReceiveCallback(can_frame *rx_frame) {
 }
 
 void AsyncCAN::ReadFromPort(struct can_frame &rec_frame,
-                            asio::posix::basic_stream_descriptor<> &stream) {
+                            asio::posix::stream_descriptor &stream) {
   auto sthis = shared_from_this();
   stream.async_read_some(
       asio::buffer(&rec_frame, sizeof(rec_frame)),

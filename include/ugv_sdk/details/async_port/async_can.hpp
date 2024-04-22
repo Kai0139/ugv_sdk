@@ -58,14 +58,14 @@ class AsyncCAN : public std::enable_shared_from_this<AsyncCAN> {
   std::thread io_thread_;
 
   int can_fd_;
-  asio::posix::basic_stream_descriptor<> socketcan_stream_;
+  asio::posix::stream_descriptor socketcan_stream_;
 
   struct can_frame rcv_frame_;
   ReceiveCallback rcv_cb_ = nullptr;
 
   void DefaultReceiveCallback(can_frame *rx_frame);
   void ReadFromPort(struct can_frame &rec_frame,
-                    asio::posix::basic_stream_descriptor<> &stream);
+                    asio::posix::stream_descriptor &stream);
 };
 }  // namespace westonrobot
 
